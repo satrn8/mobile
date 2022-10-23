@@ -43,13 +43,32 @@ def test_id_books():
     skip_start_screen(browser)
     browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).click()
     time.sleep(2)
-    #browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("848208")
     browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/toolbar_search_et')).type("848208")
     time.sleep(2)
     browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
     time.sleep(5)
     browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/card_product_bottom_panel_btn')).click()
-    browser.config.timeout = 100
+    time.sleep(2)
+
+    #  закрыть страницу после добавления
+    browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/activity_card_product_close_ib')).click()
+    time.sleep(2)
+
+    #  вернуться на шаг назад
+    browser.element((AppiumBy.XPATH, '//android.widget.ImageButton[@content-desc="Navigate up"]')).click()
+    time.sleep(5)
+    browser.element((AppiumBy.XPATH, '//android.widget.ImageButton[@content-desc="Navigate up"]')).click()
+    time.sleep(5)
+
+
+    browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).click()
+    time.sleep(2)
+    browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/toolbar_search_et')).type("838271")
+    time.sleep(2)
+    browser.driver.execute_script("mobile: performEditorAction", {'action': 'search'})
+    time.sleep(5)
+    browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/card_product_bottom_panel_btn')).click()
+
 
 
 
