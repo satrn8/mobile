@@ -16,27 +16,27 @@ def skip_start_screen(browser):
     time.sleep(2)
 
 
-# @allure.tag('mobile_tests')
-# @allure.title('Search')
-# def test_find():
-#     skip_start_screen(browser)
-#     browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
-#     time.sleep(2)
-#     browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
-#     time.sleep(5)
-#     browser.config.timeout = 100
-    # add_video(browser)
+@allure.tag('mobile_tests')
+@allure.title('Search')
+def test_find():
+    skip_start_screen(browser)
+    browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
+    time.sleep(2)
+    browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
+    time.sleep(5)
+    browser.config.timeout = 100
+    add_video(browser)
 
 
-# @allure.tag('mobile_tests')
-# @allure.title('Test search')
-# def test_click_office():
-#     skip_start_screen(browser)
-#     browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
-#     browser.config.timeout = 20
-#     browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
-#     browser.config.timeout = 20
-    # add_video(browser)
+@allure.tag('mobile_tests')
+@allure.title('Test search')
+def test_click_office():
+    skip_start_screen(browser)
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
+    browser.config.timeout = 20
+    browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
+    browser.config.timeout = 20
+    add_video(browser)
 
 
 def test_id_books():
@@ -92,4 +92,23 @@ def test_id_books():
     browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[4]/android.widget.FrameLayout/android.widget.EditText')).type("Иванова")
 
 
+def test_school():
+    skip_start_screen(browser)
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
+    browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Школа"]/android.widget.TextView')).click()
+    browser.element((AppiumBy.ID, 'ru.labirint.android:id/filter_tv')).click()
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout')).click()
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.CheckBox')).click()
+    browser.element((AppiumBy.ID, 'ru.labirint.android:id/ok_btn')).click()
 
+def test_shipping_and_payment():
+    skip_start_screen(browser)
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[5]/android.widget.RelativeLayout/android.widget.TextView')).click()
+    time.sleep(5)
+    browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/info_view')).click()
+    time.sleep(5)
+    browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/info_button_payment')).click()
+    time.sleep(10)
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[9]/android.view.View[2]/android.widget.EditText')).type("оплата qr")
+    time.sleep(10)
+    browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[9]/android.view.View[2]/android.widget.Button')).click()
