@@ -25,7 +25,7 @@ def test_find():
     browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
     time.sleep(5)
     browser.config.timeout = 100
-    add_video(browser)
+    # add_video(browser)
 
 
 @allure.tag('mobile_tests')
