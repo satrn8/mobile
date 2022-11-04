@@ -16,8 +16,6 @@ def skip_start_screen(browser):
     time.sleep(2)
 
 
-@allure.tag('mobile_tests')
-@allure.title('Search')
 def test_find():
     skip_start_screen(browser)
     browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
@@ -25,18 +23,15 @@ def test_find():
     browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
     time.sleep(5)
     browser.config.timeout = 100
-    # add_video(browser)
 
 
-@allure.tag('mobile_tests')
-@allure.title('Test search')
 def test_click_office():
     skip_start_screen(browser)
     browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
     browser.config.timeout = 20
     browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
     browser.config.timeout = 20
-    add_video(browser)
+
 
 
 def test_id_books():
@@ -100,6 +95,7 @@ def test_school():
     browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout')).click()
     browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.CheckBox')).click()
     browser.element((AppiumBy.ID, 'ru.labirint.android:id/ok_btn')).click()
+
 
 def test_shipping_and_payment():
     skip_start_screen(browser)
