@@ -16,25 +16,6 @@ def skip_start_screen(browser):
     time.sleep(2)
 
 
-def test_find():
-    with allure.step("Тест поиска на странице"):
-        skip_start_screen(browser)
-        browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
-        time.sleep(2)
-        browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
-        time.sleep(5)
-        browser.config.timeout = 100
-
-
-def test_click_office():
-    with allure.step("Тест открытия раздела"):
-        skip_start_screen(browser)
-        browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
-        browser.config.timeout = 20
-        browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
-        browser.config.timeout = 20
-
-
 def test_id_books():
     with allure.step("Тест добавления в корзину книг по ID и заполнение формы заказа"):
         skip_start_screen(browser)
@@ -87,6 +68,25 @@ def test_id_books():
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.FrameLayout/android.widget.EditText')).type("Алёна")
         time.sleep(5)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[4]/android.widget.FrameLayout/android.widget.EditText')).type("Иванова")
+
+
+def test_find():
+    with allure.step("Тест поиска на странице"):
+        skip_start_screen(browser)
+        browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
+        time.sleep(2)
+        browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
+        time.sleep(5)
+        browser.config.timeout = 100
+
+
+def test_click_office():
+    with allure.step("Тест открытия раздела"):
+        skip_start_screen(browser)
+        browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
+        browser.config.timeout = 20
+        browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
+        browser.config.timeout = 20
 
 
 def test_school():
