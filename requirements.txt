@@ -9,3 +9,4 @@ selenium~=4.2.0
 requests
 pydantic
 typing
+urllib3
