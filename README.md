@@ -4,7 +4,11 @@
 
 * <h2>Тест добавления в корзину книг по ID и заполнение формы заказа</h2> 
  
- ![image](https://user-images.githubusercontent.com/107774229/200141349-30d71247-6d0a-4664-9188-f4fee173eebe.png)
+![image](https://user-images.githubusercontent.com/107774229/200141349-30d71247-6d0a-4664-9188-f4fee173eebe.png)
+ 
+
+https://user-images.githubusercontent.com/107774229/200194190-c19a197b-1d29-4afc-9300-93d094a96619.mp4
+
  
 * <h2>Тест поиска на странице</h2> 
 
