@@ -1,13 +1,14 @@
 import time
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
-from selene import have
 from selene.support.shared import browser
-from mobile_tests.model import app
+
 browser.config.timeout = 100
 
 
 def skip_start_screen(browser):
+    browser.element((AppiumBy.ID, 'com.android.permissioncontroller:id/permission_deny_button')).click()
+    time.sleep(10)
     browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/fragment_main_auth_skip')).click()
     time.sleep(2)
     browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/fragment_main_auth_skip')).click()
@@ -48,22 +49,34 @@ def test_id_books():
         time.sleep(5)
         browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/card_product_bottom_panel_btn')).click()
         time.sleep(5)
-
         browser.element((AppiumBy.ID, 'ru.labirint.android:id/basket_bottom_panel_btn')).click()
+        time.sleep(10)
+        browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/order_temp_region_btn')).click()
+        time.sleep(10)
+        browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/region_input_et')).type("Зеленоград")
+        time.sleep(15)
+        browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RadioButton')).click()
         time.sleep(10)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.widget.RadioButton')).click()
         time.sleep(10)
+        browser.element((AppiumBy.ID, 'com.android.permissioncontroller:id/permission_deny_and_dont_ask_again_button')).click()
+        time.sleep(10)
         browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="список"]')).click()
         time.sleep(10)
-        browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/exw_list_search_et')).type("1106")
+        browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/exw_list_search_et')).click()
+        browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/exw_list_search_et')).type("1508")
         time.sleep(10)
+        browser.driver.execute_script("mobile: performEditorAction", {'action': 'search'})
+        time.sleep(5)
         browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/exw_item_rb')).click()
         time.sleep(10)
-
-
         browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/order_temp_phone_et')).type("9998555611")
         time.sleep(10)
-        browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout/android.widget.EditText')).type("verypyc@test.ru")
+        time.sleep(5)
+        browser.driver.swipe(720, 683, 720, 100, 400)
+        browser.driver.swipe(720, 683, 720, 100, 400)
+        time.sleep(5)
+        browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/order_temp_email_et')).type("verypyc@test.ru")
         time.sleep(5)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.FrameLayout/android.widget.EditText')).type("Алёна")
         time.sleep(5)
@@ -73,24 +86,26 @@ def test_id_books():
 def test_find():
     with allure.step("Тест поиска на странице"):
         skip_start_screen(browser)
-        browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).type("блокнот")
-        time.sleep(2)
+        browser.element((AppiumBy.ID, 'ru.labirint.android:id/toolbar_search_et')).click()
+        browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/toolbar_search_et')).type("блокнот")
+        time.sleep(20)
         browser.driver.execute_script("mobile: performEditorAction",  {'action': 'search'})
-        time.sleep(5)
-        browser.config.timeout = 100
+        time.sleep(10)
 
 
 def test_click_office():
     with allure.step("Тест открытия раздела"):
         skip_start_screen(browser)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
-        browser.config.timeout = 20
+        time.sleep(10)
         browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Канцтовары"]/android.widget.TextView')).click()
-        browser.config.timeout = 20
+        time.sleep(10)
+        browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/androidx.viewpager.widget.ViewPager/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]')).click()
+        time.sleep(10)
 
 
 def test_school():
-    with allure.step("Тест фильтрации по диапазону цены"):
+    with allure.step("Тест фильтрации"):
         skip_start_screen(browser)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.TextView')).click()
         browser.element((AppiumBy.XPATH, '//android.widget.LinearLayout[@content-desc="Школа"]/android.widget.TextView')).click()
@@ -108,6 +123,8 @@ def test_shipping_and_payment():
         browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/info_view')).click()
         time.sleep(5)
         browser.element((AppiumBy.ID, 'ru.labirint.android.otherfeatures:id/info_button_payment')).click()
+        time.sleep(10)
+        browser.element((AppiumBy.CSS_SELECTOR, 'android.widget.Button')).click()
         time.sleep(10)
         browser.element((AppiumBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[9]/android.view.View[2]/android.widget.EditText')).type("оплата qr")
         time.sleep(10)
