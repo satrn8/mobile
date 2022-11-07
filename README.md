@@ -1,4 +1,3 @@
-# mobile
 
 * <h1>Mobile тесты</h1>
 
