@@ -12,7 +12,7 @@ https://user-images.githubusercontent.com/107774229/200194190-c19a197b-1d29-4afc
  
 * <h2>Тест поиска на странице</h2> 
 
-![image](https://user-images.githubusercontent.com/107774229/200141382-412c0fae-ae79-4af6-89eb-86b2540e34fe.png)
+![image](https://user-images.githubusercontent.com/107774229/200197573-0af5e6d9-e15c-431e-81ef-f4b3ca4dd22c.png)
 
 https://user-images.githubusercontent.com/107774229/200170997-d3b0a7c5-c3c1-44d4-8d7c-0d5967b4427a.mp4
 
