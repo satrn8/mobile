@@ -12,7 +12,7 @@ git clone https://github.com/satrn8/mobile.git
 ```
 pytest .\tests\android\test_labirint_for_local.py --alluredir reports\
 ```
-Генерация отсчета локально
+Генерация отчета локально
 ```
 allure serve .\reports\ 
 ```
