@@ -1,42 +1,36 @@
 import pydantic
 from appium.options.android import UiAutomator2Options
 from typing import Literal, Optional
+from dotenv import load_dotenv
+import os
+from mobile_tests.utils import file
 
-from mobile_tests import utils
+load_dotenv()
 
-EnvContext = Literal['personal', 'local', 'test', 'stage', 'prod']
+EnvContext = Literal['browserstack', 'local']
+
+
+USER = os.getenv('LOGIN')
+KEY = os.getenv('KEY')
+APPIUM_BROWSERSTACK = os.getenv('APPIUM_BROWSERSTACK')
 
 
 class Settings(pydantic.BaseSettings):
-    context: EnvContext = 'local'
+    context: EnvContext = 'browserstack'
 
-    # --- Appium Capabilities ---
-    platformName: str = None
-    platformVersion: str = None
-    deviceName: str = None
+    platformName: Optional[str] = None
+    os_version: Optional[str] = None
+    deviceName: Optional[str] = None
     app: Optional[str] = None
     appName: Optional[str] = None
     appWaitActivity: Optional[str] = None
-    newCommandTimeout: Optional[int] = 60
-
-    # --- > BrowserStack Capabilities ---
+    newCommandTimeout: Optional[int] = 6
     projectName: Optional[str] = None
     buildName: Optional[str] = None
     sessionName: Optional[str] = None
-    # --- > > BrowserStack credentials---
-    userName: Optional[str] = None
-    accessKey: Optional[str] = None
     udid: Optional[str] = None
-
-    # --- Remote Driver ---
-    remote_url: str = 'http://127.0.0.1:4723/wd/hub'  # it's a default appium server url
-
-    # --- Selene ---
+    remote_url = f'http://{USER}:{KEY}@{APPIUM_BROWSERSTACK}/wd/hub'
     timeout: float = 6.0
-
-    @property
-    def run_on_browserstack(self):
-        return 'hub.browserstack.com' in self.remote_url
 
     @property
     def driver_options(self):
@@ -46,7 +40,7 @@ class Settings(pydantic.BaseSettings):
         if self.platformName:
             options.platform_name = self.platformName
         options.app = (
-            utils.file.abs_path_from_project(self.app)
+            file.abs_path_from_project(self.app)
             if self.app.startswith('./') or self.app.startswith('../')
             else self.app
         )
@@ -55,19 +49,6 @@ class Settings(pydantic.BaseSettings):
             options.udid = self.udid
         if self.appWaitActivity:
             options.app_wait_activity = self.appWaitActivity
-        if self.run_on_browserstack:
-            options.load_capabilities(
-                {
-                    'platformVersion': self.platformVersion,
-                    'bstack:options': {
-                        'projectName': self.projectName,
-                        'buildName': self.buildName,
-                        'sessionName': self.sessionName,
-                        'userName': self.userName,
-                        'accessKey': self.accessKey,
-                    },
-                }
-            )
 
         return options
 
@@ -77,9 +58,9 @@ class Settings(pydantic.BaseSettings):
         factory method to init Settings with values from corresponding .env file
         """
         asked_or_current = env or cls().context
-        asked_or_current = 'local'
+        asked_or_current = 'browserstack'
         return cls(
-            _env_file=utils.file.abs_path_from_project(f'config.{asked_or_current}.env')
+            _env_file=file.abs_path_from_project(f'config.{asked_or_current}.env')
         )
 
 
