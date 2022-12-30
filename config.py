@@ -16,7 +16,7 @@ APPIUM_BROWSERSTACK = os.getenv('APPIUM_BROWSERSTACK')
 
 
 class Settings(pydantic.BaseSettings):
-    context: EnvContext = 'browserstack'
+    context: EnvContext = 'local'
 
     platformName: Optional[str] = None
     os_version: Optional[str] = None
@@ -29,7 +29,7 @@ class Settings(pydantic.BaseSettings):
     buildName: Optional[str] = None
     sessionName: Optional[str] = None
     udid: Optional[str] = None
-    remote_url = f'http://{USER}:{KEY}@{APPIUM_BROWSERSTACK}/wd/hub'
+    remote_url: str = 'http://127.0.0.1:4723/wd/hub'
     timeout: float = 6.0
 
     @property
@@ -58,7 +58,7 @@ class Settings(pydantic.BaseSettings):
         factory method to init Settings with values from corresponding .env file
         """
         asked_or_current = env or cls().context
-        asked_or_current = 'browserstack'
+        asked_or_current = 'local'
         return cls(
             _env_file=file.abs_path_from_project(f'config.{asked_or_current}.env')
         )
