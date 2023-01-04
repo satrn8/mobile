@@ -6,11 +6,8 @@ from selene.support.shared import browser
 
 def skip_start_screen(browser):
     browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/fragment_main_auth_skip')).click()
-    time.sleep(5)
     browser.element((AppiumBy.ID, 'ru.labirint.android.installed_feature_main:id/fragment_main_auth_skip')).click()
-    time.sleep(5)
     browser.element((AppiumBy.XPATH, '//android.widget.TextView[@content-desc="ImageView"]')).click()
-    time.sleep(5)
 
 
 def test_shipping_and_payment():
